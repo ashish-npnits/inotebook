@@ -1,4 +1,7 @@
+import Notes from "./components/Notes";
+
 const Home = () => {
+
   return (
     <div className="container my-4">
       <h1>Add a note</h1>
@@ -28,9 +31,7 @@ const Home = () => {
           Submit
         </button>
       </form>
-      <div className=" my-4">
-        <h1>Your Notes</h1>
-      </div>
+      <Notes/>
     </div>
   );
 };
