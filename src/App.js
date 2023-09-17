@@ -2,6 +2,8 @@ import './App.css';
 import NavBar from './pages/components/NavBar';
 import Home from './pages/home';
 import About from './pages/about';
+import NoteState from './context/notes/noteState';
+
 import {
   BrowserRouter,
   Routes,
@@ -9,7 +11,8 @@ import {
 } from "react-router-dom";
 function App() {
   return (
-    <BrowserRouter>
+    <NoteState>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route index element={<Home/>} />
@@ -18,6 +21,7 @@ function App() {
         </Route>
       </Routes>
       </BrowserRouter>
+    </NoteState> 
   );
 }
 
