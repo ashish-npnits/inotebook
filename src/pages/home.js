@@ -2,10 +2,13 @@ import Alert from "./components/Alert";
 import Notes from "./components/Notes";
 import { useContext, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
+import alertContext from "../context/alert/alertContext";
 
 const Home = () => {
 
     const context = useContext(noteContext);
+    const alertCon = useContext(alertContext);
+    const {alert, showAlert} = alertCon;
     const { addNote} = context;
 
    const [note,setNote] =  useState({title:"", description:"", tag:""})
@@ -16,12 +19,13 @@ const Home = () => {
 
     const saveNotes = (event) =>{
         event.preventDefault();
-        addNote(note)
+        addNote(note);
+        showAlert("Note created successfully !! ", "success", true);
     }
 
   return (
     <div className="container my-4">
-        <Alert msg="All done"/>
+        <Alert alert={alert}/>
       <h1>Add a note</h1>
       <form>
         <div className="mb-3">

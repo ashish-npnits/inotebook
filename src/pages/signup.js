@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import callAPI from '../utils/apiUtils';
 import {baseURL} from '../const/constants';
 import {useNavigate } from 'react-router-dom';
+import alertContext from "../context/alert/alertContext";
+import Alert from "./components/Alert";
 
 function Signup() {
   const [signUpData, setSignUpData] = useState({name:"",email:"", password:"",cpassword:""});
@@ -10,20 +12,26 @@ function Signup() {
     setSignUpData({...signUpData,[event.target.name]:event.target.value})
   }
 
+  const alertCon = useContext(alertContext);
+  const {alert, showAlert} = alertCon;
+
   const navigate = useNavigate();
    const submitLogin= async (event)=>{
         event.preventDefault();
         const createuser = await callAPI('POST',`${baseURL}/api/auth/createuser`,signUpData);
         if(createuser.success){
             localStorage.setItem('token',createuser.authtoken);
+            showAlert("Account created successfully !! ", "success", true);
             navigate('/home');
         }else{
-            alert('invalid details - ');
+            showAlert("Account created failed !! ", "danger", true);
         }
         
    }
   
   return (
+    <>
+    <div className="container my-4"><Alert alert={alert}/></div>
     <div className="container my-4 d-flex justify-content-center">
       <form className='col-md-4'>
       <div className="mb-3">
@@ -58,6 +66,7 @@ function Signup() {
         </button>
       </form>
     </div>
+    </>
   )
 }
 

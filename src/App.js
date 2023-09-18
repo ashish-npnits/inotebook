@@ -11,9 +11,11 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import AlertState from './context/alert/alertState';
 function App() {
   return (
     <NoteState>
+      <AlertState>
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<NavBar />}>
@@ -25,6 +27,7 @@ function App() {
         </Route>
       </Routes>
       </BrowserRouter>
+      </AlertState>
     </NoteState> 
   );
 }
