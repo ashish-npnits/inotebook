@@ -1,35 +1,12 @@
 import { useState } from "react";
 import noteContext from "./noteContext";
+import callAPI from "../../utils/apiUtils";
+import {baseURL} from '../../const/constants';
 
 const NoteState = (props) =>{
-    const baseURL = 'http://localhost:4000'
     let InitialNotes = [];
     const [notes,setNotes] = useState(InitialNotes);
 
- 
-    async function callAPI(type, url = "", data ) {
-
-      let reqInit = {
-        method: type, 
-        mode: "cors", 
-        cache: "no-cache", 
-        credentials: "same-origin", 
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDZjNTViMTFhYmUxODllMGM2MjllOCIsImlhdCI6MTY5NDk0MjU1NX0.A11TOHSAc2REz_Q9cX1Lc_cIizHAe1lZJqnq4Z6Xaw4"
-        },
-        redirect: "follow", 
-        referrerPolicy: "no-referrer"
-      };
-
-      if(data!=null)
-      {
-        reqInit.body = JSON.stringify(data);
-      }
-
-      const response = await fetch(url, reqInit);
-      return response.json(); 
-    }
 
     const getAllNotes = async () =>{
       const notes = await callAPI('GET',`${baseURL}/api/notes/fetchallnotes`,null);

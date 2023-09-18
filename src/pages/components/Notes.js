@@ -7,6 +7,7 @@ function Notes() {
   const { notes, getAllNotes, editNote } = context;
   useEffect(() => {
     getAllNotes();
+    // eslint-disable-next-line
   }, []);
 
   const updateNote = (currentNote) => {
