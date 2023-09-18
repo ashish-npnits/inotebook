@@ -7,7 +7,7 @@ async function callAPI(type, url = "", data ) {
       credentials: "same-origin", 
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDZjNTViMTFhYmUxODllMGM2MjllOCIsImlhdCI6MTY5NDk0MjU1NX0.A11TOHSAc2REz_Q9cX1Lc_cIizHAe1lZJqnq4Z6Xaw4"
+        "auth-token": localStorage.getItem()
       },
       redirect: "follow", 
       referrerPolicy: "no-referrer"
